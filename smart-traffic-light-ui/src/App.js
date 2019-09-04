@@ -4,20 +4,19 @@ import './App.css';
 class App extends React.Component {
 	
 	nowState = {
-		state : "Standby",
-		numberOfCars : 0,
+		text: "Smart Traffic Lights in Standby",
 	}
 	
 	render () {
 		return (
 			<div className = "App">
 				<header className = "App-header">
-					<p>
+					<h1>
 						Smart Traffic light
-					</p>
+					</h1>
 					
 					<input type="button" 
-						onClick={this.getStart} 
+						onClick={this.getStart}
 						value={'Start'}/>
 						
 					<input type="button" 
@@ -29,7 +28,7 @@ class App extends React.Component {
 						value={'Stop'}/>
 						
 					<div className="App-content"> 
-						<p>{JSON.stringify(this.nowState.traffic)}</p>
+						<p>{this.nowState.text}</p>
 					</div>
 					
 				</header>
@@ -41,22 +40,25 @@ class App extends React.Component {
 	{
 		fetch(`http://localhost:3005/start`) 
 	}
+	// functional
 	
 	getStatus = () => 
 	{
 		fetch(`http://localhost:3005/status`) 
-			.then(response => response.json()) 
-			.then(data => { 
-				this.setState({traffic:data}) 
-			}) 
-			.catch(error => { 
+			.then((response) => { response.text() })
+			.then((data) => { 
+				this.setState({
+					text : data
+				})
 			})
 	}
+	//currently doent not update nowStatus
 	
 	getStop = () => 
 	{
 		fetch(`http://localhost:3005/stop`) 
 	}
+	//functional
 	
 
 }
