@@ -71,4 +71,10 @@ function simulateCars() {
 	timeout = setTimeout(simulateCars, 5000); 
 } 
 //start the simulation
-startSimulation();
+//startSimulation();
+
+module.exports = { 
+	state: state,
+	startSimulation : startSimulation,
+	stopSimulation: stopSimulation
+}
